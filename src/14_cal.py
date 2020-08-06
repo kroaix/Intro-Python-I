@@ -30,3 +30,23 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+
+today = datetime.today()
+
+month, year = today.month, today.year
+
+cal = calendar.TextCalendar(firstweekday=6)
+
+#If the user doesn't specify any input, your program should print the calendar for the current month. The 'datetime' module may be helpful for this.
+if len(sys.argv) == 1:
+  calendar.prmonth(today.year, today.month)
+#If the user specifies one argument, assume they passed in a month and render the calendar for that month of the current year. 
+elif len(sys.argv) == 2:
+  calendar.prmonth(today.year, int(sys.argv[1]))
+#If the user specifies two arguments, assume they passed in both the month and the year. Render the calendar for that month and year.
+elif len(sys.argv) == 3:
+  calendar.prmonth(int(sys.argv[2]), int(sys.argv[1]))
+#Otherwise, print a usage statement to the terminal indicating the format that your program expects arguments to be given. Then exit the program.
+else:
+  print("usage: filename month year")
+  sys.exit(1)
